@@ -21,14 +21,14 @@ repositories {
 //}
 
 configure<JavaPluginConvention> {
-    sourceCompatibility = JavaVersion.VERSION_11
+    sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
 
 configure<com.github.lkishalmi.gradle.gatling.GatlingPluginExtension> {
     toolVersion = "3.2.0"
-    scalaVersion = "2.13.0"
+    scalaVersion = "2.12.3"
     jvmArgs = listOf(
             "-server",
             "-Xmx4G",
