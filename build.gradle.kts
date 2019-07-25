@@ -4,3 +4,48 @@
  * This is a general purpose Gradle build.
  * Learn how to create Gradle builds at https://guides.gradle.org/creating-new-gradle-builds
  */
+
+plugins {
+    id("com.github.lkishalmi.gatling") version "3.0.2"
+    id("java")
+    id("idea")
+    id("scala")
+}
+
+repositories {
+    jcenter()
+    mavenCentral()
+}
+
+//dependencies{
+//}
+
+configure<JavaPluginConvention> {
+    sourceCompatibility = JavaVersion.VERSION_11
+    targetCompatibility = JavaVersion.VERSION_1_8
+}
+
+
+configure<com.github.lkishalmi.gradle.gatling.GatlingPluginExtension> {
+    toolVersion = "3.2.0"
+    scalaVersion = "2.13.0"
+    jvmArgs = listOf(
+            "-server",
+            "-Xmx4G",
+            "-Xms4G",
+            "-XX:+UseG1GC",
+            "-XX:MaxGCPauseMillis=30",
+            "-XX:G1HeapRegionSize=64m",
+            "-XX:InitiatingHeapOccupancyPercent=75",
+            "-XX:+ParallelRefProcEnabled",
+            "-XX:+PerfDisableSharedMem",
+            "-XX:+AggressiveOpts",
+            "-XX:+OptimizeStringConcat",
+            "-XX:+HeapDumpOnOutOfMemoryError",
+            "-Djava.net.preferIPv4Stack=true",
+            "-Djava.net.preferIPv6Addresses=false"
+    )
+    includeMainOutput = true
+    includeTestOutput = true
+
+}
